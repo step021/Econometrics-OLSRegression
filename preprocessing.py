@@ -98,6 +98,25 @@ def ols_regression(data):
     print("\nInterpretation:")
     print(f"A 1% increase in square footage is associated with a {round(coef, 2)}% change in price.")
 
+def ols_regression2(data):
+    data['log_price'] = np.log(data['price'])
+    X = data['bdrms']
+    y = data['log_price']
+    X = sm.add_constant(X)
+    model = sm.OLS(y, X)
+    results = model.fit()
+    print(results.summary())
+    coef = results.params['bdrms']
+    coef2 = results.params['const']
+    std_err = results.bse['bdrms']
+    std_err2 = results.bse['const']
+    r_squared = results.rsquared
+    print("\nCoefficient of bdrms:", round(coef, 4))
+    print("Standard Error:", round(std_err, 4))
+    print("R-squared:", round(r_squared, 4))
+    print("\nInterpretation:")
+    print(f"A 1% increase in number of bedrooms is associated with a {round(coef, 2)}% change in price.")
+
 
 
 
@@ -129,3 +148,5 @@ if Hprice is not None:
     display_summary_table(summary)
     price_histogram(Hprice, Samples)
     scatter_plot(Hprice, 'bdrms', 'price')
+    ols_regression(Hprice)
+    ols_regression2(Hprice)
