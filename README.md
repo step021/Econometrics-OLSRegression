@@ -4,4 +4,4 @@ This code achieves this for a Housing related data set comparing bedrooms with p
 
 # Files
 Preprocessing.py - python script for OLS model and processing different features from housing data set(mean, sd). Also provides data visualizations(histograms, scatter plots).
-.gitignore - ignores unneccesary files
+
